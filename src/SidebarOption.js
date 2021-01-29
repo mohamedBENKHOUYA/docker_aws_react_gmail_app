@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './SidebarOption.css';
 
 function SidebarOption({Icon, title, number, selected}){
-
+    useEffect(() => console.log("rendering SidebarOption"));
     return(
         <div className={`sidebarOption ${selected && "sidebarOption--active"}`}>
             <Icon />

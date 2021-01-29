@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Section.css';
 
 const Section = ({Icon, title, color, selected}) => {
-
+    useEffect(() => console.log("rendering Section"));
     return (
         <div className={`section ${selected && 'section--selected'}`}
         style={

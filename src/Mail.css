@@ -44,6 +44,7 @@
 
 .mail__bodyHeader > p {
     margin-left: 20px;
+    flex: 1;
 }
 
 .mail__time {

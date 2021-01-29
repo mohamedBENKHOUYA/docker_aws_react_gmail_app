@@ -3,12 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 export const mailSlice = createSlice({
   name: 'mail',
   initialState: {
+    selectedMail: null,
     sendMessageIsOpen: false,
+
   },
+  // event handlers
   reducers: {
+    selectMail: (state, action) => {
+        state.selectedMail = action.payload;
+    },
     openSendMessage: state => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the statde because it uses the Immer library,
+      // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.sendMessageIsOpen = true;
@@ -19,11 +25,16 @@ export const mailSlice = createSlice({
     // incrementByAmount: (state, action) => {
     //   state.value += action.payload;
     // },
+
   },
 });
 
-export const {openSendMessage, closeSendMessage} = mailSlice.actions;
+export const {
+  selectMail,
+  openSendMessage,
+  closeSendMessage} = mailSlice.actions;
 
+// export const selectMail = mailSlice.actions.selectMail;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -39,6 +50,11 @@ export const {openSendMessage, closeSendMessage} = mailSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;
+export const selectSendMessageIsOpen = (state) => (state.mail.sendMessageIsOpen);
+export const selectOpenMail = (state) => state.mail.selectedMail;
 
-export default mailSlice.reducer;
+
+// our reducer pure method
+export const mailReducer = mailSlice.reducer;
+
+

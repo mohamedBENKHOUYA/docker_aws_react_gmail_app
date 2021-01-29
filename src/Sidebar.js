@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Sidebar.css';
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
@@ -19,6 +19,7 @@ import {openSendMessage} from "./features/mailSlice";
 
 const Sidebar = () => {
     const dispatch = useDispatch();
+    useEffect(() => console.log("rendering Sidebar"));
     return (
         <div className={"sidebar"}>
             <Button startIcon={

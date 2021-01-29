@@ -2,6 +2,7 @@
 .emailRow{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 50px;
     border-bottom: 1px solid whitesmoke;
     cursor: pointer;
@@ -20,12 +21,14 @@
 
 .emailRow__message {
     display: flex;
-    flex: 0.8;
+    flex: 1 1 50%;
+    min-width: 20rem;
     align-items: center;
     font-size: 13px;
+    /*border: solid red;*/
 }
 .emailRow__message > h4 {
-    width: 400px;
+    /*width: 400px;*/
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,14 +37,25 @@
 }
 
 .emailRow__title {
+    /*border: solid;*/
     font-size: 13px;
-    flex: 0.3;
+    flex: 1 1 20%;
+    min-width: 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .emailRow__time {
     padding-right: 15px;
     font-size: 9px;
     font-weight: bold;
+    flex: 1 1 20%;
+    min-width: 8rem;
+
+    /*background: red;*/
+
 }
 
 .emailRow__description {

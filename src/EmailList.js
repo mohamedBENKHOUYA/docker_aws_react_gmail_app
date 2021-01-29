@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './EmailList.css'
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,9 +14,26 @@ import PeopleIcon from "@material-ui/icons/People"
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import Section from "./Section";
 import EmailRow from "./EmailRow";
-
+import {db} from "./firebase";
 
 function EmailList() {
+
+    const [emails, setEmails] = useState([]);
+
+    useEffect(() => {
+
+        db.collection('emails').orderBy('timestamp', 'desc')
+            .onSnapshot((snapshot) => (setEmails(
+                snapshot.docs.map(doc =>({
+                            id: doc.id,
+                            data: doc.data(),
+                }))
+            ))
+            );
+    }, []);
+
+    useEffect(() => console.log("rendering EmailList"));
+
     return (
         <div className={'emailList'} >
             <div className="emailList__settings">
@@ -64,18 +81,28 @@ function EmailList() {
 
 
             </div>
-            <EmailRow
-                title={"Twitch"}
-                subject={"Hey fellow streamer !!!"}
-                description={ "This is a test"}
-                time={"10pm"}
-                />
-                <EmailRow
-                title={"Twitch"}
-                subject={"Hey fellow streamer !!!"}
-                description={ "This is a test that aims to do some work in the back"}
-                time={"10pm"}
-                />
+
+
+            {
+                emails.map(({id, data : {to, subject, message, timestamp}}) => (
+
+                        <EmailRow
+                            key={id}
+                            id={id}
+                            title={to}
+                            subject={subject}
+                            description={message}
+                            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+                        />
+                    )
+                )
+
+            }
+
+
+
+
+
 
         </div>
     )
