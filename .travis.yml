@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mohamed/docker_aws_react_gmail_app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true mohamed/docker_aws_react_gmail_app npm run test -- --coverage
