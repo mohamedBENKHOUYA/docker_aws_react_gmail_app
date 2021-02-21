@@ -5,6 +5,7 @@ FROM node:alpine
 WORKDIR '/app'
 
 COPY package.json ./
+RUN npm install --save-dev webpack --force
 RUN npm install
 
 COPY  . .
