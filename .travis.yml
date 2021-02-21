@@ -12,7 +12,7 @@ deploy:
   provider: elasticbeanstalk
   region: "eu-west-3"
   app: "docker_aws_eact_gmail_firebase_app"
-  env: "Dockerawseactgmailfirebaseapp-env"
+  env: "Dockerawseactgmailfirebaseapp-env-1"
   bucket_name: "elasticbeanstalk-eu-west-3-661517513609"
   bucket_path: "docker_aws_eact_gmail_firebase_app"
   on:
