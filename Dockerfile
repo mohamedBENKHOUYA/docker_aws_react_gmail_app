@@ -1,3 +1,6 @@
+FROM alpine
+WORKDIR /app
+
 FROM node:alpine as builder
 
 WORKDIR '/app'
@@ -6,7 +9,7 @@ COPY ./package.json ./
 
 RUN npm install --save-dev webpack --force
 RUN npm install
-
+RUN npm audit fix --force
 COPY ./ ./
 
 RUN npm run build
