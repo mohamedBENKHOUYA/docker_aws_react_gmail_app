@@ -6,6 +6,8 @@ COPY ./package.json ./
 RUN npm install --save-dev webpack --force
 RUN npm install
 COPY ./ ./
+RUN npm install react-popper
+RUN install chalk
 RUN npm run build
 
 FROM nginx
