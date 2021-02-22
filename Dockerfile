@@ -1,11 +1,10 @@
 
-FROM node:alpine AS builder
+FROM node:10 AS builder
 WORKDIR '/app'
 COPY ./package.json ./
 
 RUN npm install --save-dev webpack --force
 RUN npm install
-RUN node --expose-gc --max-old-space-size=8192 node_modules/react-scripts/scripts/build.js
 COPY ./ ./
 RUN npm run build
 
