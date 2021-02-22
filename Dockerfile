@@ -9,6 +9,7 @@ COPY ./package.json ./
 RUN npm install --save
 COPY ./ ./
 RUN npm i history
+ENV GENERATE_SOURCEMAP false
 RUN npm run build
 
 FROM nginx
