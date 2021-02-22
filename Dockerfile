@@ -1,7 +1,7 @@
 
 FROM node:alpine AS builder
 WORKDIR '/app'
-RUN set NODE_OPTIONS=--max_old_space_size=8172
+RUN node --expose-gc --max-old-space-size=8192 node_modules/react-scripts/scripts/build.js
 COPY ./package.json ./
 
 RUN npm install --save-dev webpack --force
