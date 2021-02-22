@@ -1,16 +1,13 @@
-FROM alpine
-WORKDIR /app
 
-FROM node:alpine as builder
-
+FROM node:alpine AS builder
 WORKDIR '/app'
-
 COPY ./package.json ./
 
 RUN npm install --save-dev webpack --force
 RUN npm install
 COPY ./ ./
-
+RUN npm install -g increase-memory-limit
+RUN increase-memory-limit
 RUN npm run build
 
 FROM nginx
