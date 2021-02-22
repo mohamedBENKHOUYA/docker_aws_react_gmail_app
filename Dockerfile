@@ -1,13 +1,12 @@
 
 FROM node:alpine AS builder
 WORKDIR '/app'
+RUN set NODE_OPTIONS=--max_old_space_size=8172
 COPY ./package.json ./
 
 RUN npm install --save-dev webpack --force
 RUN npm install
 COPY ./ ./
-RUN npm install -g increase-memory-limit
-RUN increase-memory-limit
 RUN npm run build
 
 FROM nginx
